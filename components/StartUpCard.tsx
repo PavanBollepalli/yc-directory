@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 const StartUpCard = ({ post }: { post: StartupTypeCard }) => {
   const {
     _createdAt,
-    image_url,
+    image,
     views,
     author: { _id: authorId, name },
     title,
@@ -33,7 +33,7 @@ const StartUpCard = ({ post }: { post: StartupTypeCard }) => {
             <h3 className="text-26-semibold line-clamp-1">{title}</h3>
           </Link>
         </div>
-        <Link href={`{/user/${authorId}}`}>
+        <Link href={`/user/${authorId}`}>
           <Image
             src="https://placehold.co/48x48"
             alt="placeholder"
@@ -43,9 +43,9 @@ const StartUpCard = ({ post }: { post: StartupTypeCard }) => {
           ></Image>
         </Link>
       </div>
-      <Link href={`{/user/${_id}}`}>
+      <Link href={`/startup/${_id}`}>
         <p className="startup-card_desc">{descreption}</p>
-        <img src={image_url} alt="" className="startup-card_img" />
+        <img src={image} alt="" className="startup-card_img" />
       </Link>
       <div className="flex-between gap-3 mt-5">
         <Link href={`/?query=${category.toLowerCase()}`}>
