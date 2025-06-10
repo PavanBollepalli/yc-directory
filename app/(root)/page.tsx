@@ -13,28 +13,6 @@ export default async function Home({
   const query = (await searchParams).query;
   const posts = await client.fetch(STARTUPS_QUERY);
   console.log(JSON.stringify(posts, null, 3));
-  // const posts = [
-  //   {
-  //     _createdAt: new Date(),
-  //     views: 54,
-  //     author: { _id: 1, name: "GOD" },
-  //     descreption: "This is descreption",
-  //     image_url:
-  //       "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGltYWxheWF8ZW58MHx8MHx8fDA%3D",
-  //     category: "himalayas",
-  //     title: "Mount Kailash",
-  //   },
-  //   {
-  //     _createdAt: new Date(),
-  //     views: 57,
-  //     author: { _id: 1, name: "adrian" },
-  //     descreption: "This is descreption",
-  //     image_url:
-  //       "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGltYWxheWF8ZW58MHx8MHx8fDA%3D",
-  //     category: "himalayas",
-  //     title: "Himalayas",
-  //   },
-  // ];
   return (
     <>
       <section className="pink_container">
