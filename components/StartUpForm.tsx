@@ -7,8 +7,14 @@ import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { error } from "console";
 import { link } from "fs";
+import { formSchema } from "@/lib/validation";
+import { cn } from "@/lib/utils";
+import z from "zod";
 const StartUpForm = () => {
-  const handleFormSubmit = (prevState: any, formData: FormData) => {
+  const [pitch, setPitch] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const handleFormSubmit = async (prevState: any, formData: FormData) => {
     try {
       const formValues = {
         title: formData.get("title") as string,
@@ -17,16 +23,29 @@ const StartUpForm = () => {
         link: formData.get("link") as string,
         pitch,
       };
-      await;
+      await formSchema.parseAsync(formValues);
+      console.log(formValues);
+      //const result=await createIdea(prevState,formData,pitch);
+      //console.log(result);
     } catch (error) {
-    } finally {
+      if (error instanceof z.ZodError) {
+        const fieldErrors = error.flatten().fieldErrors;
+        setErrors(fieldErrors as unknown as Record<"string", "string">);
+        return { ...prevState, error: "Validation Failed", status: "ERROR" };
+      }
+      return {
+        ...prevState,
+        error: "An Unexpected Error Has Occured",
+        status: "ERROR",
+      };
     }
   };
-  const [pitch, setPitch] = useState("");
-  const [] = useActionState(handleFormSubmit, { error: "", status: "INITIAL" });
-
+  const [state, formAction, isPending] = useActionState(handleFormSubmit, {
+    error: "",
+    status: "INITIAL",
+  });
   return (
-    <form action={() => {}} className="startup-form">
+    <form action={formAction} className="startup-form">
       <div>
         <label htmlFor="title" className="startup-form_label">
           Title
