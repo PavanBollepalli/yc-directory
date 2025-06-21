@@ -23,6 +23,7 @@ export const createPitch = async (
   );
 
   const slug = slugify(title as string, { lower: true, strict: true });
+
   try {
     const startup = {
       title,
@@ -30,7 +31,7 @@ export const createPitch = async (
       category,
       image: link,
       slug: {
-        _type: "slug",
+        _type: slug,
         current: slug,
       },
       author: {
@@ -48,10 +49,10 @@ export const createPitch = async (
       status: "SUCCESS",
     });
   } catch (error) {
-    console.log("Error creating startup:", error);
+    console.log(error);
 
     return parseServerActionResponse({
-      error: error instanceof Error ? error.message : "An unexpected error occurred",
+      error: JSON.stringify(error),
       status: "ERROR",
     });
   }
