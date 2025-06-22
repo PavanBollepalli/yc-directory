@@ -4,6 +4,7 @@ import StartUpCard, { StartupTypeCard } from "@/components/StartUpCard";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import SentryInit from "@/components/SentryInit";
+export const revalidate = 60; // Enables ISR — rebuilds every 60s
 
 export default async function Home({
   searchParams,
