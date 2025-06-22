@@ -27,12 +27,8 @@ const StartupForm = () => {
         pitch,
       };
 
-      await formSchema.parseAsync(formValues);      const result = await createPitch(prevState, formData, pitch);
-      
-      console.log("CreatePitch result:", result);
-      console.log("Result status:", result.status);
-      console.log("Status comparison:", result.status === "SUCCESS");
-
+      await formSchema.parseAsync(formValues);      
+      const result = await createPitch(prevState, formData, pitch);
       if (result.status === "SUCCESS") {
         console.log("Showing success toast...");
         toast({
@@ -41,7 +37,7 @@ const StartupForm = () => {
         });
         setTimeout(() => {
           router.push(`/startup/${result._id}`);
-        }, 1500);
+        }, 1000);
         
         return result;
       } else {

@@ -1,6 +1,5 @@
 import React from "react";
 import NavBar from "@/components/NavBar";
-import SentryInit from "@/components/SentryInit";
 export default function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -8,7 +7,6 @@ export default function Layout({
     <main className="font-work-sans">
       <NavBar />
       {children}
-      <SentryInit />
     </main>
   );
 }

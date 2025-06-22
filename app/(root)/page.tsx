@@ -3,6 +3,7 @@ import SearchForm from "@/components/SearchForm";
 import StartUpCard, { StartupTypeCard } from "@/components/StartUpCard";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
+import SentryInit from "@/components/SentryInit";
 
 export default async function Home({
   searchParams,
@@ -45,6 +46,7 @@ export default async function Home({
         </ul>
       </section>
       <SanityLive />
+      <SentryInit />
     </>
   );
 }
