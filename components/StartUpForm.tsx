@@ -11,7 +11,6 @@ import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { createPitch } from "@/lib/actions";
-
 const StartupForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [pitch, setPitch] = useState("");
@@ -28,20 +27,33 @@ const StartupForm = () => {
         pitch,
       };
 
-      await formSchema.parseAsync(formValues);
+      await formSchema.parseAsync(formValues);      const result = await createPitch(prevState, formData, pitch);
+      
+      console.log("CreatePitch result:", result);
+      console.log("Result status:", result.status);
+      console.log("Status comparison:", result.status === "SUCCESS");
 
-      const result = await createPitch(prevState, formData, pitch);
-
-      if (result.status == "SUCCESS") {
+      if (result.status === "SUCCESS") {
+        console.log("Showing success toast...");
         toast({
           title: "Success",
           description: "Your startup pitch has been created successfully",
         });
-
-        router.push(`/startup/${result._id}`);
+        setTimeout(() => {
+          router.push(`/startup/${result._id}`);
+        }, 1500);
+        
+        return result;
+      } else {
+        console.log("Error in result:", result.error);
+        toast({
+          title: "Error",
+          description: result.error || "Failed to create startup pitch",
+          variant: "destructive",
+        });
+        
+        return result;
       }
-
-      return result;
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErorrs = error.flatten().fieldErrors;
