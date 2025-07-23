@@ -456,9 +456,8 @@ copies or substantial portions of the Software.
 
 ### Community
 
-- 🐦 **Twitter**: [@YourTwitterHandle](https://twitter.com/yourtwitterhandle)
-- 💼 **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
-- 🌐 **Website**: [your-website.com](https://your-website.com)
+- 💼 **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/pavanbollepalli)
+- 🌐 **Website**: [your-website.com](https://pavanbollepalli.me)
 
 [⬆️ Back to top](#-yc-directory)
 
